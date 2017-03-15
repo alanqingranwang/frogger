@@ -1,0 +1,46 @@
+module  fish ( input Reset, frame_clk,
+					   input [9:0] fishCenter,
+                  output [9:0]  fishX, fishY);
+			
+    logic [9:0] fish_X_Pos;
+	
+	 logic [19:0] counter;
+	 
+    //parameter [9:0] Ball_X_Center=448;  // Center position on the X axis
+    
+	 always_ff @ (posedge Reset or posedge frame_clk )
+	 begin: Move_fish
+	  
+	 if (Reset)  // Asynchronous Reset
+		 begin 
+		    fish_X_Pos <= fishCenter;
+			 counter <= 0;
+		 end	
+	  
+	 else if(counter == 500000)
+		 begin 
+			 if ((fish_X_Pos) > 431)  // fish reaches left screen
+			 begin		
+				  fish_X_Pos = 207-16;
+			 end
+			
+			 else
+			 begin
+				  fish_X_Pos = fish_X_Pos + 1;
+			 end
+				  
+			 counter = 0;
+		 end  
+		
+	  else
+			 begin
+				 counter = counter + 1;
+			 end
+     end
+      
+		
+     assign fishX = fish_X_Pos;
+   
+     assign fishY = 222;
+    
+endmodule

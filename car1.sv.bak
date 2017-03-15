@@ -1,0 +1,62 @@
+module  car1 ( input Reset, frame_clk,
+					 input [9:0] car1Center,
+               output [9:0]  car1X, car1Y);
+			
+    logic [9:0] car1_X_Pos;
+	
+	 logic [19:0] counter;
+	 
+    //parameter [9:0] Ball_X_Center=448;  // Center position on the X axis
+    
+	 always_ff @ (posedge Reset or posedge frame_clk )
+	 begin: Move_truck
+	  
+	 if (Reset)  // Asynchronous Reset
+		 begin 
+		    car1_X_Pos <= car1Center;
+			 counter <= 0;
+		 end	
+	  
+	 else if(counter == 500000)
+		 begin 
+		    if(truckCenter == 431)
+		    begin
+			    if ((car1_X_Pos + 32) < 111)  // truck reaches left screen
+				 begin		
+					  car1_X_Pos = car1Center;
+				 end
+				
+			    else
+				 begin
+					  car1_X_Pos = car1_X_Pos - 1;
+				 end
+			 end
+			 
+			 else 
+			 begin
+			    if ((car1_X_Pos + 32) < 207)  // truck reaches left screen
+				 begin		
+					  car1_X_Pos = car1Center;
+				 end
+				
+			    else
+				 begin
+					  car1_X_Pos = car1_X_Pos - 1;
+				 end
+			 end
+				  
+			 counter = 0;
+		 end  
+		
+	  else
+			 begin
+				 counter = counter + 1;
+			 end
+     end
+      
+		
+     assign car1X = car1_X_Pos;
+   
+     assign car1Y = 304;
+    
+endmodule

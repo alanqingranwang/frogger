@@ -1,0 +1,53 @@
+module detection( input frame_clk, Reset,
+                  input [9:0] frogX1, frogY1,
+						input [9:0] truckX1, truckY1,
+						
+						
+						output frogreset,
+                  output [1:0] Life);
+						
+	   always_ff @ (posedge frame_clk or posedge Reset )
+      begin
+            if(Reset) 
+						Life <= 3;
+				else
+				begin
+			
+				   /********** Walls *************/
+				   if( (frogX1+2 > 431) )
+				   begin
+						frogreset <= 1;
+						Life <= Life - 1;
+			      end
+					else if( (frogX1+13 < 207) )
+				   begin
+						frogreset <= 1;
+						Life <= Life - 1;
+			      end
+					/********************************/
+						
+						
+					/**************** Truck 1 **************/	
+					else if( (frogX1+2 >= truckX1+2) && (frogX1+2 <= truckX1+28) && (frogY1+8 >= truckY1+3 ) && (frogY1+8 <= truckY1+12) )
+			      begin
+						frogreset <= 1;
+						Life <= Life - 1;
+			      end
+					else if( (frogX1+13 >= truckX1+2) && (frogX1+13 <= truckX1+28) && (frogY1+8 >= truckY1+3 ) && (frogY1+8 <= truckY1+12) )
+			      begin
+						frogreset <= 1;
+						Life <= Life - 1;
+			      end
+					/******************************/
+					
+					
+					
+					else
+					begin
+						frogreset <= 0;
+					end
+					
+				end
+		end 
+		
+endmodule

@@ -1,0 +1,23 @@
+Warning (10268): Verilog HDL information at bigLog.sv(12): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at fishThree.sv(14): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at tractor.sv(12): always construct contains both blocking and non-blocking assignments
+Info (10281): Verilog HDL Declaration information at nios_system_mm_interconnect_0_router_003.sv(48): object "DEFAULT_WR_CHANNEL" differs only in case from object "default_wr_channel" in the same scope
+Info (10281): Verilog HDL Declaration information at nios_system_mm_interconnect_0_router_003.sv(49): object "DEFAULT_RD_CHANNEL" differs only in case from object "default_rd_channel" in the same scope
+Info (10281): Verilog HDL Declaration information at nios_system_mm_interconnect_0_router_002.sv(48): object "DEFAULT_WR_CHANNEL" differs only in case from object "default_wr_channel" in the same scope
+Info (10281): Verilog HDL Declaration information at nios_system_mm_interconnect_0_router_002.sv(49): object "DEFAULT_RD_CHANNEL" differs only in case from object "default_rd_channel" in the same scope
+Info (10281): Verilog HDL Declaration information at nios_system_mm_interconnect_0_router_001.sv(48): object "DEFAULT_WR_CHANNEL" differs only in case from object "default_wr_channel" in the same scope
+Info (10281): Verilog HDL Declaration information at nios_system_mm_interconnect_0_router_001.sv(49): object "DEFAULT_RD_CHANNEL" differs only in case from object "default_rd_channel" in the same scope
+Info (10281): Verilog HDL Declaration information at nios_system_mm_interconnect_0_router.sv(48): object "DEFAULT_WR_CHANNEL" differs only in case from object "default_wr_channel" in the same scope
+Info (10281): Verilog HDL Declaration information at nios_system_mm_interconnect_0_router.sv(49): object "DEFAULT_RD_CHANNEL" differs only in case from object "default_rd_channel" in the same scope
+Warning (10273): Verilog HDL warning at HexDriver.sv(23): extended using "x" or "z"
+Warning (10268): Verilog HDL information at ball.sv(44): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at truck.sv(12): always construct contains both blocking and non-blocking assignments
+Info (10281): Verilog HDL Declaration information at color_mapper.sv(7): object "winx" differs only in case from object "WinX" in the same scope
+Info (10281): Verilog HDL Declaration information at color_mapper.sv(7): object "gameoverx" differs only in case from object "GameOverX" in the same scope
+Info (10281): Verilog HDL Declaration information at color_mapper.sv(40): object "Blue" differs only in case from object "blue" in the same scope
+Info (10281): Verilog HDL Declaration information at color_mapper.sv(40): object "Green" differs only in case from object "green" in the same scope
+Warning (10268): Verilog HDL information at yellowCar.sv(12): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at grayCar.sv(12): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at log.sv(12): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at fishTwo.sv(12): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at ball2.sv(31): always construct contains both blocking and non-blocking assignments

@@ -1,0 +1,132 @@
+module control(	
+						input Clk, Reset,
+						input [2:0] Life,
+						input [2:0] frogwins,
+						input [15:0] keycode,
+						
+						output loadstage2,
+						output startx, winx, gameoverx,
+						output stage1x, stage2x
+						);
+						
+	enum logic [2:0] {start, stage1, hold, stage2, gameover, win} state, next_state;
+	
+	
+	logic [6:0] counter = 0;
+	always_ff @ (posedge Clk or posedge Reset )
+    begin
+        if (Reset) 
+            state <= start;
+        else
+		  begin
+            state <= next_state;	
+				if (state == hold)
+					counter <= counter + 1;
+		  end
+	 end
+	 
+	 
+	always_comb
+	begin 
+	    next_state  = state;
+	 
+	    case (state)
+	    	start:
+			begin
+	    		if(keycode == 16'h0028)
+	    			next_state = stage1;
+	    		else
+	    			next_state = start;
+			end
+					
+			stage1:
+			begin
+				if(Life == 0)
+					next_state = gameover;
+				else if(frogwins == 5)
+				   next_state = hold;
+				else 
+					next_state = stage1;
+			end
+		 
+		   hold:
+			begin
+				if(counter == 10)
+					next_state = stage2;
+				else 
+					next_state = hold;
+			end
+		 
+			stage2:
+			begin
+				if(Life == 0)
+					next_state = gameover;
+				else if(frogwins == 5)
+					next_state = win;
+				else 
+					next_state = stage2;
+			end
+					
+			win:
+			begin
+				if(keycode == 16'h0028)
+	    			next_state = start;
+	    		else
+	    			next_state = win;
+			end
+			
+			gameover:
+			begin
+				if(keycode == 16'h0028)
+	    			next_state = start;
+	    		else
+	    			next_state = gameover;
+			end
+			
+		endcase
+	end
+	
+	always_comb
+	begin
+		loadstage2 = 0;
+		startx = 0;
+		gameoverx = 0;
+		winx = 0;
+		stage1x = 0;
+		stage2x = 0;
+		
+		case (state) 
+			start:
+			begin
+				startx = 1;
+			end
+			
+			stage1:
+			begin
+				stage1x = 1;
+			end
+			
+			hold:
+			begin
+				loadstage2 = 0;
+			end
+			
+			stage2:
+			begin
+				stage2x = 1;
+			end
+			
+			win:
+			begin
+				winx = 1;
+			end
+			
+			gameover:
+			begin
+				gameoverx = 1;
+			end
+			
+		endcase
+	end						
+						
+endmodule

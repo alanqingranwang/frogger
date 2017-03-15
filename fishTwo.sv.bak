@@ -1,0 +1,46 @@
+module  fishThree ( input Reset, frame_clk,
+					   input [9:0] fishThreeCenter,
+                  output [9:0]  fishThreeX, fishThreeY);
+			
+    logic [9:0] fishThree_X_Pos;
+	
+	 logic [19:0] counter;
+	 
+    //parameter [9:0] Ball_X_Center=448;  // Center position on the X axis
+    
+	 always_ff @ (posedge Reset or posedge frame_clk )
+	 begin: Move_fishThree
+	  
+	 if (Reset)  // Asynchronous Reset
+		 begin 
+		    fishThree_X_Pos <= fishThreeCenter;
+			 counter <= 0;
+		 end	
+	  
+	 else if(counter == 500000)
+		 begin 
+			 if ((fishThree_X_Pos + 48) < 207)  // fishThree reaches left screen
+			 begin		
+				  fishThree_X_Pos = 431;
+			 end
+			
+			 else
+			 begin
+				  fishThree_X_Pos = fishThree_X_Pos - 1;
+			 end
+				  
+			 counter = 0;
+		 end  
+		
+	  else
+			 begin
+				 counter = counter + 1;
+			 end
+     end
+      
+		
+     assign fishThreeX = fishThree_X_Pos;
+   
+     assign fishThreeY = 222;
+    
+endmodule
